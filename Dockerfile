@@ -11,8 +11,8 @@ RUN ssh-keygen -h -t rsa -f /etc/ssh/ssh_host_rsa_key \
     && echo "root" | passwd --stdin root
 
 # teamcity
-RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.0.2.tar.gz \
-    && tar zxvf TeamCity-9.0.2.tar.gz
+RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.1.1.tar.gz \
+    && tar zxvf TeamCity-9.1.1.tar.gz
 
 RUN printf '#!/bin/bash \n\
 export JAVA_HOME=/usr/lib/jvm/java-openjdk/ \n\
