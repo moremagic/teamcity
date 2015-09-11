@@ -1,14 +1,14 @@
-FROM centos:centos6
+FROM centos
 MAINTAINER moremagic <itoumagic@gmail.com>
 
 # Install wget etc...
-RUN yum install -y wget tar java-1.7.0-* passwd openssh-server initscripts \
+RUN yum install -y passwd openssh-server openssh-clients initscripts
+RUN yum install -y install java-1.7.0-* git wget curl tar zip \
     && yum -y update
 
 # ssh
-RUN ssh-keygen -h -t rsa -f /etc/ssh/ssh_host_rsa_key \
-    && ssh-keygen -h -t dsa -f /etc/ssh/ssh_host_dsa_key \
-    && echo "root" | passwd --stdin root
+RUN echo 'root:root' | chpasswd
+RUN /usr/sbin/sshd-keygen
 
 # teamcity
 RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.1.1.tar.gz \
