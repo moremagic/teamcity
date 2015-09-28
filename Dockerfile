@@ -11,8 +11,8 @@ RUN echo 'root:root' | chpasswd
 RUN /usr/sbin/sshd-keygen
 
 # teamcity
-RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.1.1.tar.gz \
-    && tar zxvf TeamCity-9.1.1.tar.gz
+RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.1.3.tar.gz \
+    && tar zxvf TeamCity-9.1.3.tar.gz
 
 RUN printf '#!/bin/bash \n\
 export JAVA_HOME=/usr/lib/jvm/java-openjdk/ \n\
