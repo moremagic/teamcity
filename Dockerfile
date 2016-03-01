@@ -10,6 +10,10 @@ RUN yum install -y install java-1.8.0-* git wget curl tar zip \
 RUN echo 'root:root' | chpasswd
 RUN /usr/sbin/sshd-keygen
 
+# set locale
+RUN echo LANG="ja_JP.UTF-8" > /etc/locale.conf
+RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+
 # teamcity
 RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.1.6.tar.gz \
     && tar zxvf TeamCity-9.1.6.tar.gz
