@@ -11,15 +11,20 @@ RUN echo 'root:root' | chpasswd
 RUN /usr/sbin/sshd-keygen
 
 # set locale
-RUN echo LANG="ja_JP.UTF-8" > /etc/locale.conf
-RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+RUN yum -y reinstall glibc-common
+RUN localedef -v -c -i ja_JP -f UTF-8 ja_JP.UTF-8; echo "";
+
+env LANG=ja_JP.UTF-8
+RUN rm -f /etc/localtime
+RUN ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 # teamcity
 RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.1.6.tar.gz \
     && tar zxvf TeamCity-9.1.6.tar.gz
 
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0
+
 RUN printf '#!/bin/bash \n\
-export JAVA_HOME=/usr/lib/jvm/java-openjdk/ \n\
 mkdir -p /TeamCity/buildAgent/logs/ \n\
 /TeamCity/bin/runAll.sh start \n\
 /usr/sbin/sshd -D \n\
