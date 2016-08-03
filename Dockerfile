@@ -19,8 +19,8 @@ RUN rm -f /etc/localtime
 RUN ln -fs /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 # teamcity
-RUN wget http://download-cf.jetbrains.com/teamcity/TeamCity-9.1.6.tar.gz \
-    && tar zxvf TeamCity-9.1.6.tar.gz
+RUN wget https://download.jetbrains.com/teamcity/TeamCity-10.0.tar.gz \
+    && tar zxvf TeamCity-10.0.tar.gz
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8.0
 
